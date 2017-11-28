@@ -45,12 +45,12 @@ android_library(
 
 android_build_config(
     name = "build_config",
-    package = "com.geekchat",
+    package = "com.geekschat",
 )
 
 android_resource(
     name = "res",
-    package = "com.geekchat",
+    package = "com.geekschat",
     res = "src/main/res",
 )
 

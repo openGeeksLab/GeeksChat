@@ -1,4 +1,4 @@
-package com.geekchat;
+package com.geekschat;
 
 import android.app.Application;
 

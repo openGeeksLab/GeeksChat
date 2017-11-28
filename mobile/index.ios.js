@@ -12,7 +12,7 @@ import {
   View
 } from 'react-native';
 
-export default class GeekChat extends Component {
+export default class geeksChat extends Component {
   render() {
     return (
       <View style={styles.container}>
@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('GeekChat', () => GeekChat);
+AppRegistry.registerComponent('geeksChat', () => geeksChat);
