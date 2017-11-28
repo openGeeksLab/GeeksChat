@@ -1,11 +1,12 @@
 from django.contrib import admin
 
-from apps.chat.models import Room, Message
+from apps.chat.models import Room, Message, UserRoom
 
 
 class MessageInlineAdmin(admin.TabularInline):
     model = Message
     extra = 1
+    max_num = 2
 
     def get_extra(self, request, obj=None, **kwargs):
         if obj:
@@ -13,10 +14,20 @@ class MessageInlineAdmin(admin.TabularInline):
 
         return self.extra
 
+    def get_max_num(self, request, obj=None, **kwargs):
+        return self.max_num
+
 
 class RoomAdmin(admin.ModelAdmin):
-    inlines = (MessageInlineAdmin,)
-    list_display = ('__str__',)
+    inlines = [
+        MessageInlineAdmin,
+    ]
+    list_display = ('name', 'label')
+    search_fields = ('name', 'label')
+    ordering = ('label',)
+    fieldsets = (
+        ('Room', {'fields': ('name', 'label')}),
+    )
 
 
 class MessageAdmin(admin.ModelAdmin):
@@ -31,5 +42,16 @@ class MessageAdmin(admin.ModelAdmin):
     )
 
 
+class UserRoomAdmin(admin.ModelAdmin):
+    list_display = ('user', 'room')
+    search_fields = ('user__username', 'room__name', 'room__label')
+    ordering = ('user', 'room')
+    fieldsets = (
+        ('User', {'fields': ('user',)}),
+        ('Room', {'fields': ('room',)}),
+    )
+
+
 admin.site.register(Room, RoomAdmin)
 admin.site.register(Message, MessageAdmin)
+admin.site.register(UserRoom, UserRoomAdmin)

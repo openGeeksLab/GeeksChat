@@ -28,3 +28,14 @@ class Message(models.Model):
 
     def as_dict(self):
         return {'user': self.user, 'message': self.message, 'timestamp': self.formatted_timestamp}
+
+
+class UserRoom(models.Model):
+    user = models.ForeignKey(User)
+    room = models.ForeignKey(Room)
+
+    class Meta:
+        unique_together = ('user', 'room')
+
+    def __str__(self):
+        return '{} - {}'.format(self.user, self.room)

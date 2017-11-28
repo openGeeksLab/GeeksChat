@@ -25,7 +25,7 @@ SECRET_KEY = 's7iis%8gi_lsi&6bq3kdv-zkyq!jhl=t#xtgrzjqx8!ty=o)^$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # third party
+    'rest_framework',
     'graphene_django',
 
-    # our 
+    # our
     'apps.chat',
 ]
 
@@ -124,3 +125,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GRAPHENE = {
+    'SCHEMA': 'geeksChat.schema.schema'
+}
