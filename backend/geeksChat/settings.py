@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.facebook',
     'graphene_django',
     'channels',
+    'push_notifications',
 
     # our
     'apps.chat',
@@ -204,3 +205,8 @@ JWT_AUTH = {
 }
 
 LOGIN_REDIRECT_URL = '/'
+
+PUSH_NOTIFICATIONS_SETTINGS = {
+    'GCM_API_KEY': '[key=AIzaSyAVxkZpDLUNk8iNcuER5MPuUo5ARM4EpRU]',
+    'GCM_ERROR_TIMEOUT': 60,
+}

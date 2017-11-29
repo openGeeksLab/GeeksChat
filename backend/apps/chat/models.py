@@ -1,5 +1,9 @@
+import json
+
 from django.contrib.auth import get_user_model
 from django.db import models
+
+from channels import Group
 
 
 User = get_user_model()
@@ -11,6 +15,13 @@ class Room(models.Model):
 
     def __str__(self):
         return 'Room - {}.'.format(self.label)
+
+    @property
+    def websocket_group(self):
+        """
+        Returns the Channels Group that sockets should subscribe to to get messages.
+        """
+        return Group('chat-{}'.format(self.label))
 
 
 class Message(models.Model):
