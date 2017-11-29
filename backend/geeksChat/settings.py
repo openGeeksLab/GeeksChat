@@ -194,8 +194,6 @@ SOCIALACCOUNT_PROVIDERS = {
                 'gender',
                 'updated_time'
             ],
-            'VERIFIED_EMAIL': True,
-            'LOCALE_FUNC': lambda request: 'en_US',
         },
 }
 

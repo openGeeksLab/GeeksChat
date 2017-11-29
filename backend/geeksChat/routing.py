@@ -1,10 +1,10 @@
 from channels import route
 
-# This function will display all messages received in the console
-def message_handler(message):
-    print(message['text'])
+from apps.chat.consumers import ws_chat_connect, ws_chat_receive, ws_chat_disconnect
 
 
 channel_routing = [
-    route("websocket.receive", message_handler)  # we register our message handler
+    route('websocket.connect', ws_chat_connect, path=r'^/chat/'),
+    route('websocket.receive', ws_chat_receive, path=r'^/chat/'),
+    route('websocket.disconnect', ws_chat_disconnect, path=r'^/chat/'),
 ]
